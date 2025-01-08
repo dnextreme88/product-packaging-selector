@@ -84,6 +84,10 @@ class AddProductsToBox extends Component
             ->where('width', '>=', $this->width_total)
             ->where('height', '>=', $this->height_total)
             ->where('weight_limit', '>=', $this->weight_limit_total)
+            ->orderBy('length', 'ASC')
+            ->orderBy('width', 'ASC')
+            ->orderBy('height', 'ASC')
+            ->orderBy('weight_limit', 'ASC')
             ->first();
 
         $this->is_determined = true;
