@@ -89,6 +89,7 @@
                     <li>Length: {{ $minimum_box_constraint['length'] }} cm</li>
                     <li>Width: {{ $minimum_box_constraint['width'] }} cm</li>
                     <li>Height: {{ $minimum_box_constraint['height'] }} cm</li>
+                    <li>Volume: {{ number_format($minimum_box_constraint['volume']) }} cm</li>
                     <li>Weight Limit: {{ $minimum_box_constraint['weight_limit'] }} kg</li>
                 </ul>
             @elseif (is_null($minimum_box_constraint))
