@@ -81,19 +81,73 @@
         @if (!$is_determined)
             <p>Input the dimensions of your products above and hit the blue button to determine the smallest possible box that will fit these products.</p>
         @else
-            @if ($minimum_box_constraint)
-                <p>{{ $current_product_count == 1 ? 'This product' : 'These products' }} will fit in the box with the following dimensions:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div>
+                    <h2 class="text-2xl">Total Dimensions of Products</h2>
 
-                <ul>
-                    <li>Name: {{ $minimum_box_constraint['name'] }}</li>
-                    <li>Length: {{ $minimum_box_constraint['length'] }} cm</li>
-                    <li>Width: {{ $minimum_box_constraint['width'] }} cm</li>
-                    <li>Height: {{ $minimum_box_constraint['height'] }} cm</li>
-                    <li>Volume: {{ number_format($minimum_box_constraint['volume']) }} cm</li>
-                    <li>Weight Limit: {{ $minimum_box_constraint['weight_limit'] }} kg</li>
-                </ul>
-            @elseif (is_null($minimum_box_constraint))
-                <p class="text-red-500">Your products do not fit in any box available!</p>
+                    <ul>
+                        <li class="my-2">Total Length: {{ number_format($length_total) }} cm</li>
+                        <li class="my-2">Total Width: {{ number_format($width_total) }} cm</li>
+                        <li class="my-2">Total Height: {{ number_format($height_total) }} cm</li>
+                        <li class="my-2">Total Volume: {{ number_format($volume_total) }} cm</li>
+                        <li class="my-2">Total Weight: {{ number_format($weight_limit_total) }} kg</li>
+                    </ul>
+                </div>
+
+                @if ($largest_products_list)
+                    <div>
+                        <h2 class="text-2xl">Largest Products</h2>
+
+                        <ul>
+                            @foreach ($largest_products_list as $large_product)
+                                <li class="my-2 font-bold">Product # {{ $large_product['product_number'] }}</li>
+                                <li class="my-2">Length: {{ number_format($large_product['length']) }} cm</li>
+                                <li class="my-2">Width: {{ number_format($large_product['width']) }} cm</li>
+                                <li class="my-2">Height: {{ number_format($large_product['height']) }} cm</li>
+                                <li class="my-2">Volume: {{ number_format($large_product['volume']) }} cm</li>
+                                <li class="my-2">Weight: {{ number_format($large_product['weight_limit']) }} kg</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+
+            <h2 class="text-2xl">Results</h2>
+
+            @if ($products_in_packed_box)
+                <div>
+                    <p>{{ count($products_in_packed_box) == 1 ? 'Product' : 'Product #s' }} {{ implode(', ', array_column($products_in_packed_box, 'product_number')) }} will fit in the box with the following details:</p>
+
+                    <ul>
+                        <li>Name: {{ $minimum_box_constraint['name'] }}</li>
+                        <li>Length: {{ number_format($minimum_box_constraint['length']) }} cm</li>
+                        <li>Width: {{ number_format($minimum_box_constraint['width']) }} cm</li>
+                        <li>Height: {{ number_format($minimum_box_constraint['height']) }} cm</li>
+                        <li>Total Volume: {{ number_format($minimum_box_constraint['volume']) }} cm</li>
+                        <li>Weight Limit: {{ number_format($minimum_box_constraint['weight_limit']) }} kg</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if ($products_transferred_to_other_boxes)
+                <div>
+                    @foreach ($products_transferred_to_other_boxes as $product)
+                        <p class="text-blue-500">{{ $product['message'] }}</p>
+
+                        <ul>
+                            <li>Name: {{ $product['box']['name'] }}</li>
+                            <li>Length: {{ number_format($product['box']['length']) }} cm</li>
+                            <li>Width: {{ number_format($product['box']['width']) }} cm</li>
+                            <li>Height: {{ number_format($product['box']['height']) }} cm</li>
+                            <li>Volume: {{ number_format($product['box']['volume']) }} cm</li>
+                            <li>Weight Limit: {{ number_format($product['box']['weight_limit']) }} kg</li>
+                        </ul>
+                    @endforeach
+                </div>
+            @endif
+
+            @if ($products_with_errors)
+                <p class="text-red-500">{{ count($products_with_errors) == 1 ? 'Product' : 'Product #s' }} {{ implode(', ', array_column($products_with_errors, 'product_number')) }} do not fit in any box!</p>
             @endif
         @endif
     </div>
