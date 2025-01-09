@@ -27,47 +27,47 @@
                 <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <div>
                         <label class="block font-sans text-lg text-slate-700 dark:text-slate-300">Length <span class="text-sm">(in cm)</span></label>
-                        <input type="text" class="p-2 bg-gray-300" wire:model="products.{{ $i }}.length" />
+                        <input type="text" class="w-3/4 p-2 bg-gray-300" wire:model="products.{{ $i }}.length" />
 
                         @error ('products.' .$i. '.length')
-                            <p class="my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            <p class="w-3/4 my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
                         <label class="block font-sans text-lg text-slate-700 dark:text-slate-300">Width <span class="text-sm">(in cm)</span></label>
-                        <input type="text" class="p-2 bg-gray-300" wire:model="products.{{ $i }}.width" />
+                        <input type="text" class="w-3/4 p-2 bg-gray-300" wire:model="products.{{ $i }}.width" />
 
                         @error ('products.' .$i. '.width')
-                            <p class="my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            <p class="w-3/4 my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
                         <label class="block font-sans text-lg text-slate-700 dark:text-slate-300">Height <span class="text-sm">(in cm)</span></label>
-                        <input type="text" class="p-2 bg-gray-300" wire:model="products.{{ $i }}.height" />
+                        <input type="text" class="w-3/4 p-2 bg-gray-300" wire:model="products.{{ $i }}.height" />
 
                         @error ('products.' .$i. '.height')
-                            <p class="my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            <p class="w-3/4 my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
                         <label class="block font-sans text-lg text-slate-700 dark:text-slate-300">Weight <span class="text-sm">(in kg)</span></label>
-                        <input type="text" class="p-2 bg-gray-300" wire:model="products.{{ $i }}.weight_limit" />
+                        <input type="text" class="w-3/4 p-2 bg-gray-300" wire:model="products.{{ $i }}.weight_limit" />
 
                         @error ('products.' .$i. '.weight_limit')
-                            <p class="my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            <p class="w-3/4 my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
                         <label class="block font-sans text-lg text-slate-700 dark:text-slate-300">Quantity</label>
-                        <input type="text" class="p-2 bg-gray-300" wire:model="products.{{ $i }}.quantity" />
+                        <input type="text" class="w-3/4 p-2 bg-gray-300" wire:model="products.{{ $i }}.quantity" />
                         <small class="block text-sm text-gray-500">This will be multiplied to the other 4 values</small>
 
                         @error ('products.' .$i. '.quantity')
-                            <p class="my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            <p class="w-3/4 my-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -77,7 +77,7 @@
         <button type="submit" class="px-4 py-2 text-gray-100 transition duration-150 bg-blue-500 hover:bg-blue-700">Determine Box</button>
     </form>
 
-    <div>
+    <div class="space-y-3">
         @if (!$is_determined)
             <p>Input the dimensions of your products above and hit the blue button to determine the smallest possible box that will fit these products.</p>
         @else

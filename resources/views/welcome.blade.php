@@ -19,7 +19,7 @@
             <header>
                 <h1 class="pt-4 text-4xl text-gray-600">Product Packaging Selector</h1>
 
-                <p class="mt-4 text-xl">Welcome to a simple form to determine the smallest box to fit your products in! Enter the dimensions for your product and hit the button below to determine the smallest possible box your products can fit in. You can add up to 10 products</p>
+                <p class="mt-4 text-xl">Welcome to a simple form to determine the smallest box to fit your products in! Enter the dimensions for your products and hit the button below to determine the smallest possible box your products can fit in. You can add up to 10 products.</p>
             </header>
 
             <main class="mt-6">
